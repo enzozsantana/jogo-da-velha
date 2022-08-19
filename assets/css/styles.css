@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Bangers', cursive;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: #08AEEA;
+    background-image: linear-gradient(45deg, #08AEEA 0%, #2AF598 100%);   
+}
+
+.board {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+}
+
+.board.virus .cell:not(.virus):not(.pills):hover, .board.pills .cell:not(.virus):not(.pills):hover {
+    opacity: 0.5;
+}
+
+/* Célula */
+.cell {
+    width: 150px;
+    height: 150px;
+    border: 4px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cell.x, .cell.circle {
+    cursor: not-allowed;
+}
+
+.cell:nth-child(1),
+.cell:nth-child(2),
+.cell:nth-child(3) {
+    border-top: none;
+}
+
+.cell:nth-child(3),
+.cell:nth-child(6),
+.cell:nth-child(9) {
+    border-right: none;
+}
+
+.cell:nth-child(7),
+.cell:nth-child(8),
+.cell:nth-child(9) {
+    border-bottom: none;
+}
+
+.cell:nth-child(1),
+.cell:nth-child(4),
+.cell:nth-child(7) {
+    border-left: none;
+}
+
+/* Vírus */
+.cell.virus, .board.virus .cell:not(.virus):not(.pills):hover {
+   background: url('/assets/images/virus.png');
+   background-repeat: no-repeat;
+   background-position: center center;
+}
+
+/* Remédios */
+.cell.pills, .board.pills .cell:not(.virus):not(.pills):hover {
+   background: url('/assets/images/pills.png');
+   background-repeat: no-repeat;
+   background-position: center center;
+}
+
+/* Mensagem de vitória */
+.winning-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    background-color: rgba(0, 0, 0, 0.9);
+    flex-direction: column;
+}
+
+.winning-message-text {
+    color: white;
+    font-size: 5rem;
+    text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
+}
+
+.winning-message-button {
+    font-size: 2.5rem;
+    background-color: rgba(65, 185, 131, 1);
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    box-shadow: 5px 5px 15px 5px #000000;
+}
+
+.winning-message-button:hover {
+    color: rgba(65, 185, 131, 1);
+    background-color: white;
+}
+
+.show-winning-message {
+    display: flex;
+}
